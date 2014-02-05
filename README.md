@@ -15,4 +15,5 @@ example
 							selectors: "h2, h3, h4",
 							extendPage:false,
 							scrollTo:50,
+							navClass:"bs-sidenav"
 						});

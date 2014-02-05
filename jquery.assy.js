@@ -51,13 +51,7 @@
             // Used to determine if elements should be shown and hidden
             showAndHide: true,
 
-            // **smoothScroll**: Accepts a boolean: true or false
-            // Determines if a jQuery animation should be used to scroll to specific table of contents items on the page
-            smoothScroll: true,
-
-            // **smoothScrollSpeed**: Accepts Number (milliseconds) or String: "slow", "medium", or "fast"
-            // The time duration of the smoothScroll animation
-            smoothScrollSpeed: "medium",
+            navClass:'',
 
             // **scrollTo**: Accepts Number (pixels)
             // The amount of space between the top of page and the selected table of contents item after the page has been scrolled
@@ -180,7 +174,7 @@
             self.element.addClass(assClassName);
 
             ul = $("<ul/>", {
-                    "class": headerClassName+' nav bs-sidenav'
+                    "class": headerClassName+' nav '+this.options.navClass
                 });
 
             self.element.append(ul);
@@ -239,43 +233,10 @@
 
         _setActiveElement: function(pageload) {
 
-            var self = this,
+            var self = this;
 
-                hash = window.location.hash.substring(1),
-
-                elem = self.element.find('li[data-unique="' + hash + '"]');
-
-            if(hash.length) {
-
-                // Removes highlighting from all of the list item's
-                self.element.find("." + self.focusClass).removeClass(self.focusClass);
-
-                // Highlights the current list item that was clicked
-                elem.addClass(self.focusClass);
-
-                // If the showAndHide option is true
-                if(self.options.showAndHide) {
-
-                    // Triggers the click event on the currently focused ASS item
-                    elem.click();
-
-                }
-
-            }
-
-            else {
-
-                // Removes highlighting from all of the list item's
-                self.element.find("." + self.focusClass).removeClass(self.focusClass);
-
-                if(!hash.length && pageload && self.options.highlightDefault) {
-
-                    // Highlights the first ASS item if no other items are highlighted
-                    self.element.find(itemClass).first().addClass(self.focusClass);
-
-                }
-
-            }
+           
+                self.element.find(itemClass).first().addClass("active");
 
             return self;
 
